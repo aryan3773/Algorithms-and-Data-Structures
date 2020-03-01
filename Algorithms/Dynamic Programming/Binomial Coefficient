@@ -1,0 +1,59 @@
+# Using recursion
+def binomial(n,r):
+    if r==0 or r==n:
+        return 1
+    else:
+        return binomial(n-1,r-1) + binomial(n-1,r)
+import time
+
+start = time.time()
+print(binomial(20,15))
+end = time.time()
+print(end-start)
+
+# Using reduced formula
+def binomial_red(n,r):
+    if r> n-r:
+        r=n-r
+    res=1
+    for i in range(r):
+        res*= (n-i)
+        res/= (i+1)
+    return res
+
+start = time.time()
+print(binomial_red(20,15))
+end = time.time()
+print(end-start)
+
+# Using DP
+def binomial_dp(n,r):
+    ans= [[0 for x in range(r+1)] for x in range(n+1)]
+    for i in range(n+1):
+        for j in range(min(i,r)+1):
+            if j==0 or j==n:
+                ans[i][j]=1
+            else:
+                ans[i][j] = ans[i-1][j-1]+ans[i-1][j]
+    return ans[n][r]
+
+start = time.time()
+print(binomial_dp(20,15))
+end = time.time()
+print(end-start)
+
+# Using optimized DP
+def binomial_odp(n,r):
+    c=[0 for i in range(r+1)]
+    c[0]=1
+    for i in range(1,n+1):
+        j=min(i,r)
+        while(j>0):
+            c[j]=c[j]+c[j-1]
+            j-=1
+    return c[r]
+
+start = time.time()
+print(binomial_odp(20,15))
+end = time.time()
+print(end-start)
