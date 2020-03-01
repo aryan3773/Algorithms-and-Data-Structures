@@ -59,3 +59,21 @@ end = time.time()
 print(end - start)
 
 # 0.028 sec to 0.05 sec for calculating 500 catalan numbers
+
+# Using modified formula
+
+def catalan(n):
+    res = 1
+    for i in range(2,n+1):
+        res *= ((n+i)/i)
+    return res
+
+import time
+start = time.time()
+l=[]
+for i in range(2,501):
+    l.append(catalan(i))
+end = time.time()
+print(end-start)
+
+# Takes 0.017 to 0.029 seconds to find 500 catalan numbers
