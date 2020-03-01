@@ -1,0 +1,61 @@
+# Using Recursion or iteration
+def catalan(n):
+    if n<=1:
+        return 1
+    c=0
+    for i in range(n):
+        c+= (catalan(i)*catalan(n-i-1))
+    return c
+import time
+start=time.time()
+for i in range(1,17):
+    print(catalan(i))
+end=time.time()
+print(end-start)
+
+# Using DP
+
+def catalan_dp(n):
+    if n<=1:
+        return 1
+    c=[0]*(n+1)
+    c[0]=1
+    c[1]=1
+    for i in range(2,n+1):
+        c[i]=0
+        for j in range(i):
+            c[i]+= c[j]*c[i-j-1]
+    return c[n]
+
+import time
+start=time.time()
+for i in range(1,500):
+    print(catalan_dp(i))
+end=time.time()
+print(end-start)
+# 500 numbers in 9 seconds
+
+# Using binomial coefficient
+
+def binomial(n,k):
+    if (k>n-k):
+        k=n-k
+    res=1
+    for i in range(k):
+        res*= (n-i)
+        res/= (i+1)
+    return res
+
+def catalan_bin(n):
+    c=binomial(2*n,n)
+    return c/(n+1)
+
+import time
+l=[]
+start = time.time()
+for i in range(1,501):
+    l.append(catalan_bin(i))
+end = time.time()
+print(end - start)
+
+# 0.028 sec to 0.05 sec for calculating 500 catalan numbers
