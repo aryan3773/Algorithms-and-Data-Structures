@@ -105,12 +105,29 @@ class LinkedList:
                 temp=temp.next
         return temp.data
     
+    def getNthNodefromLast(self,index):
+        temp1=self.head
+        l=0
+        while(temp1!=None):
+            l+=1
+            temp1=temp1.next
+        temp=self.head
+        i= l-index
+        
+        if i==0:
+            return temp.data
+        else:
+            c=0
+            while(c!=i-1):
+                c+=1
+                temp=temp.next
+        return temp.data
+    
 if __name__=='__main__': 
     llist = LinkedList() 
-    llist.push(1) 
+    llist.push(20) 
     llist.push(4) 
-    llist.push(1) 
-    llist.push(12) 
-    llist.push(1)
-    n=2
-    print("Element at index 3 is :", llist.getNthNode(n))
+    llist.push(15) 
+    llist.push(36) 
+    n=4
+    print(llist.getNthNodefromLast(n))
