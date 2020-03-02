@@ -39,6 +39,7 @@ class LinkedList:
             last = last.next
         
         last.next= new_node
+        
     def delete(self, key):
         temp = self.head
         
@@ -57,6 +58,46 @@ class LinkedList:
         prev.next = temp.next
         temp = None
         
+    def deleteNode(self,position):
+        if self.head==None:
+            return
+        temp = self.head
+        if position == 0:
+            self.head=temp.next
+            temp=None
+            return
+        c=0
+        while(c!=position-1):
+            temp= temp.next
+        prev = temp
+        temp=temp.next
+        prev.next = temp.next
+        
+    def deleteList(self):
+        current = self.head
+        while(current):
+            prev = current.next
+            del current
+            current = prev
+        
+if __name__=='__main__': 
+    l = LinkedList() 
+    l.push(7) 
+    l.push(8)
+    l.push(5)
+    l.push(1) 
+    l.push(3) 
+    l.push(2) 
+    print("Created Linked List: ")
+    l.printList() 
+    l.deleteNode(1)  
+    print("\nLinked List after Deletion of node 1:")
+    l.printList()
+    print("Deleting linked list") 
+    l.deleteList() 
+    print("Linked list deleted")
+    
+'''
 if __name__=='__main__': 
     l = LinkedList() 
     l.push(7) 
@@ -68,3 +109,4 @@ if __name__=='__main__':
     l.delete(1)  
     print("\nLinked List after Deletion of 1:")
     l.printList() 
+'''
