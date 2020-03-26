@@ -1,0 +1,52 @@
+def createStack():
+    stack=[]
+    return stack
+
+def isEmpty(stack):
+    f=False
+    if len(stack)==0:
+        f=True
+    return f
+
+def push(stack,x):
+    stack.append(x)
+
+def pop(stack):
+    if isEmpty(stack):
+        print("Error")
+    else:
+        return stack.pop()
+    
+def prints(stack):
+    for i in range(len(stack)-1,-1,-1):
+        print(stack[i],end=" ")
+    print()
+
+def insertAtBottom(stack,item):
+    if isEmpty(stack)==True:
+        push(stack,item)
+    else:
+        temp=pop(stack)
+        insertAtBottom(stack,item)
+        push(stack,temp)
+    
+def recursive_reverse(stack):
+    if not isEmpty(stack):
+        temp=pop(stack)
+        recursive_reverse(stack)
+        insertAtBottom(stack,temp)
+
+stack = createStack()
+push(stack,str(4))
+push(stack,str(3))
+push(stack,str(2))
+push(stack,str(1))
+push(stack,str(0))
+
+print("ORIGINAL STACK")
+prints(stack)
+
+recursive_reverse(stack)
+
+print("REVERSED STACK")
+prints(stack)
