@@ -12,7 +12,7 @@ class Stack:
     def size(self):
         return len(self.items)
     def prints(self):
-        for i in range(len(self.items)):
+        for i in range(len(self.items)-1,-1,-1):
             print(self.items[i],end=" ")
         print()
 
