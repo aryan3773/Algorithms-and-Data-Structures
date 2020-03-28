@@ -36,13 +36,14 @@ def stack_nge(x):
         next=x[i]
         if (isEmpty(s)==False):
             element=pop(s)
+            while(element<next):
+                 print(str(element)+" -> "+str(next))
+                 if isEmpty(s):
+                     break
+                 element=pop(s)
             if element>next:
                 push(s,element)
-        while(element<next):
-             print(str(element)+" -> "+str(next))
-             if isEmpty(s):
-                break
-              element=pop(s)
+                
             
         push(s,next)
     while(isEmpty(s)==False):
