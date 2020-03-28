@@ -38,11 +38,11 @@ def stack_nge(x):
             element=pop(s)
             if element>next:
                 push(s,element)
-            while(element<next):
-                print(str(element)+" -> "+str(next))
-                if isEmpty(s):
-                    break
-                element=pop(s)
+        while(element<next):
+             print(str(element)+" -> "+str(next))
+             if isEmpty(s):
+                break
+              element=pop(s)
             
         push(s,next)
     while(isEmpty(s)==False):
