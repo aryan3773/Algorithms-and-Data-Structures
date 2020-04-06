@@ -1,0 +1,14 @@
+def sums(x):
+    t=str(x)
+    a=0
+    for i in range(len(t)):
+        a+=int(t[i])
+    return a
+    
+class Solution(object):
+    def countLargestGroup(self,n):
+        ans=[0 for i in range(41)]
+        for i in range(1,n+1):
+            ans[sums(i)]+=1
+        #print(ans)
+        return ans.count(max(ans))
