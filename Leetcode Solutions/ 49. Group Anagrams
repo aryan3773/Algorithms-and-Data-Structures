@@ -23,19 +23,17 @@ class Solution:
         return c
 
 # Method 2: Modified Method 1
+
 class Solution:
     def groupAnagrams(self,x):
         n=len(x)
         ans=[]
-        for i in range(n):
-            r="".join(sorted(x[i]))
-            if r not in ans:
-                ans.append(r)
-        #print(ans)
-        #print(x)
         y=[]
         for i in range(n):
-            y.append("".join(sorted(x[i])))
+            r="".join(sorted(x[i]))
+            y.append(r)
+            if r not in ans:
+                ans.append(r)
         c=[]
         for j in range(len(ans)):
             l=[]
