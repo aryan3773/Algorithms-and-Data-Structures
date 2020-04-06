@@ -1,0 +1,34 @@
+# Method 1:
+class Solution(object):
+    def maxSubArray(self, x):
+        curr_sum=x[0]
+        max_sum=x[0]
+        for i in range(1,len(x)):
+            curr_sum = max(x[i],curr_sum+x[i])
+            max_sum = max(curr_sum,max_sum)
+        return max_sum
+      
+# Method 2:
+
+class Solution:
+    def _f(self,nums):
+        N = len(nums)
+        #base
+        if N==1:
+            return nums[0],nums[0],nums[0],nums[0]
+        m = N//2
+        a = nums[:m] #left
+        b = nums[m:] #right
+        #getting subproblems results
+        a_sum,a_left,a_right,a_best = self._f(a)
+        b_sum,b_left,b_right,b_best = self._f(b)
+        #merging results O(1)
+        r_sum = a_sum+b_sum
+        r_left = max(a_sum+max(0,b_left),a_left)
+        r_right = max(b_sum+max(0,a_right),b_right)
+        r_best = max(r_sum,r_left,r_right,a_right+b_left,a_best,b_best)
+        #return tuple
+        return r_sum,r_left,r_right,r_best
+    
+    def maxSubArray(self, nums: List[int]) -> int:
+        return self._f(nums)[-1]
