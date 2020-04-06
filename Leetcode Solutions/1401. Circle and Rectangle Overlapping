@@ -1,0 +1,11 @@
+class Solution:
+    def checkOverlap(self, r: int, x: int, y: int, a: int, b: int, c: int, d: int) -> bool:
+        cx= (a+c)/2
+        cy= (b+d)/2
+        
+        radius = 0.25*((a-c)**2 + (b-d)**2)
+        
+        if ((cx-x)**2 + (cy-y)**2)**0.5< radius**0.5 +r:
+            return True
+        else:
+            return False
