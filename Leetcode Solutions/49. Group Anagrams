@@ -1,0 +1,57 @@
+# Method 1: TLE on last test case
+
+class Solution:
+    def groupAnagrams(self,x):
+        n=len(x)
+        ans=[]
+        for i in range(n):
+            r="".join(sorted(x[i]))
+            if r not in ans:
+                ans.append(r)
+        #print(ans)
+        #print(x)
+        c=[]
+        for j in range(len(ans)):
+            l=[]
+            for k in range(len(x)):
+                r="".join(sorted(x[k]))
+                print(r,x[k],ans[j])
+                if r==ans[j]:
+                    l.append(x[k])
+            c.append(l)
+            
+        return c
+
+# Method 2: Modified Method 1
+class Solution:
+    def groupAnagrams(self,x):
+        n=len(x)
+        ans=[]
+        for i in range(n):
+            r="".join(sorted(x[i]))
+            if r not in ans:
+                ans.append(r)
+        #print(ans)
+        #print(x)
+        y=[]
+        for i in range(n):
+            y.append("".join(sorted(x[i])))
+        c=[]
+        for j in range(len(ans)):
+            l=[]
+            for k in range(len(x)):
+                if y[k]==ans[j]:
+                    l.append(x[k])
+            c.append(l)
+            
+        return c
+        
+ # Method 3: The most efficient one (similar to the above method but has less number of loops)
+ 
+ import collections
+class Solution:
+    def groupAnagrams(self,x):
+        ans = collections.defaultdict(list)
+        for i in x:
+            ans["".join(sorted(i))].append(i)
+        return list(ans.values())
