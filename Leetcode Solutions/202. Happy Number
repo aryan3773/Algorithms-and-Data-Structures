@@ -1,0 +1,22 @@
+def sq(x):
+    t=str(x)
+    ans=0
+    for i in range(len(t)):
+        ans+=(int(t[i]))**2
+    return ans
+
+
+class Solution(object):
+    def isHappy(self, x):
+        l=[2,4,16,37,58,89,145,42,20]
+        f=True
+        while(sq(x)!=1):
+            x=sq(x)
+            if x in l:
+                f=False
+                return f
+                break
+            else:
+                continue
+        if f!=False:
+            return f
