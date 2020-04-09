@@ -1,0 +1,10 @@
+class Solution:
+    def minSubsequence(self,p):
+        t=[]
+        p.sort()
+        n=len(p)
+        for i in range(n):
+            t.append(p.pop())
+            if sum(p)<sum(t):
+                break
+        return t
