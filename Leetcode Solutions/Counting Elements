@@ -1,0 +1,22 @@
+class Solution:
+    def countElements(self,x):
+        #e=list(set(map(int,x)))
+        x=sorted(x)
+        ans=0
+        for i in range(len(x)):
+            if x[i]!=-2:
+                w=x[i]
+                p=x.count(x[i])
+                n=x.count(x[i]+1)
+                #print(x[i],x[i]+1)
+                #print(p,n)
+                if n>0:
+                    ans+= p
+                for j in range(len(x)):
+                    #print(x[j])
+                    if x[j]==w:
+                        x[j]=-2
+                #print(x)
+            else:
+                continue
+        return ans
