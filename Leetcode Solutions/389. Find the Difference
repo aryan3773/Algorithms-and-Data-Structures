@@ -1,0 +1,20 @@
+# Method - 1
+
+class Solution:
+    def findTheDifference(self,s,t):
+        a=0
+        for i in t:
+            a+=ord(i)
+        for i in s:
+            a-=ord(i)  
+        return chr(a)
+        
+# Method - 2
+
+class Solution:
+    def findTheDifference(self,s,t):
+        n=list(set(map(str,t)))
+        count=[]
+        for i in n:
+            count.append(t.count(i)-s.count(i))
+        return n[count.index(1)]
