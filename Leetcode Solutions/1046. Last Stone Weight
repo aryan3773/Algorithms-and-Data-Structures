@@ -1,0 +1,57 @@
+# Method - 1
+
+class Solution:
+    def lastStoneWeight(self,x):
+        for i in range(len(x)-1):
+            a=max(x)
+            x[x.index(a)]=0
+            b=max(x)
+            x[x.index(b)]=abs(a-b)
+            
+        return sum(x)
+        
+# Method - 2
+
+class Solution:
+    def lastStoneWeight(self,x):
+        y=sorted(x,reverse=True)
+        #print(y)
+        for i in range(len(y)-1):
+            a=y[0]
+            b=y[1]
+            if a==b:
+                y[0]=0
+                y[1]=0
+            else:
+                y[0]=0
+                y[1]=abs(a-b)
+            y=sorted(y,reverse=True)
+            #print(y)
+        return y[0]
+
+# Method - 3
+
+class Solution:
+    def lastStoneWeight(self,x):
+        for i in range(len(x)-1):
+            x.sort()
+            x.append(abs(x.pop()-x.pop()))
+        return x[0]
+        
+# Method - 1, 2, 3 are same 
+
+# Method - 4
+
+import heapq
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        stones = [-val for val in stones]
+        heapq.heapify(stones)
+        while len(stones) > 1:
+            x1 = heapq.heappop(stones)
+            x2 = heapq.heappop(stones)
+            if x1 != x2:
+                heapq.heappush(stones,-abs(x1-x2))
+        if len(stones) == 0:
+            return 0
+        return -stones[0]
