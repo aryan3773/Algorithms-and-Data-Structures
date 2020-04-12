@@ -1,0 +1,40 @@
+def sieve_prime(x):
+    p=[1]*(x+1)
+    p[0]=0
+    p[1]=0
+    i=2
+    while(i*i<=x):
+        if p[i]==1:
+            for j in range(i*i,x+1,i):
+                p[j]=0
+        i+=1
+    return p
+
+class Solution:
+    def countPrimes(self,n):
+        if n==0 or n==1:
+            return 0
+        else:
+            s=sieve_prime(n)
+            s=s[:n]
+            return s.count(1)
+
+
+# Directly Count the number of primes
+
+class Solution:
+    def countPrimes(self,n):
+        if n==0 or n==1:
+            return 0
+        else:
+            p=[1]*(n+1)
+            p[0]=0
+            p[1]=0
+            i=2
+            primes=0
+            for i in range(2,n):
+                if p[i]==1:
+                    primes+=1
+                for j in range(i*i,n+1,i):
+                    p[j]=0
+            return primes
