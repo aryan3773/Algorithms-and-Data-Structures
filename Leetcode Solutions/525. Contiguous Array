@@ -1,0 +1,21 @@
+class Solution:
+    def findMaxLength(self,x):
+        hashmap={}
+        c=0
+        l=0
+        for i in range(len(x)):
+            if x[i]==0:
+                x[i]=-1
+        for i in range(len(x)):
+            c+=x[i]
+            if c==0:
+                l=i+1
+            
+            if c in hashmap:
+                j=i-hashmap[c]
+                l=max(j,l)
+            else:
+                hashmap[c]=i
+        return l
+        
+# The idea is to find the maximum length of subarray that has sum=0 when o is converted to -1
